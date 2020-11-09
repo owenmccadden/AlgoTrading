@@ -28,6 +28,7 @@ The StockHolding class is used to represent a user stock holding. The constructo
 The StockPortfolio class is used to represent a user stock portfolio. The constructor requires a list of StockHoldings, which can be accessed directly from the user's portfolio using the from_my_holdings class method. The StockPortfolio class includes the method get_chart, which displays a pie chart of the user's stock holdings, as well as the method liquidate, which triggers a market sell order of the entire stock portfolio on Robinhood upon execution.
 
 
+
 ### Option
 The Option class is used to represent an option contract and provide access to option data. The constructor requires only the option ID, a unique alphanumerical value used to represent a particular option contract. The from_search_by_strike_and_date class method allows the user to search options contracts by ticker, strike price, and expiration date. Simlar to the Stock class, the option class provides methods to access option data such as bid-ask spread, the greeks, and number of days until expiration. In addition, the option class provides several methods to visualize the hypothetical percent return of a particular option contract. The get_hypothetical method displays a graph connected to three sliders to represent time, stock price, and implied volatility. The user can manipulate these sliders to estimate the total percent return of their option contract. The option class also includes methods to plot the percent return of the contract due exclusively as a result of theta, delta, and vega.
 
