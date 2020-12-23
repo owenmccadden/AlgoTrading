@@ -5,7 +5,7 @@
 | Python  | robin_stocks, MatPlotLib, NumPy, Pandas, SciPy|
 
 ## Summary
-The purpose of this project is to provide a generic framework to create algorithmic trading strategies that are executed using Robinhood. This project provides traders with the ability to quickly access and visualize stock and option data, view current user holdings, and estimate the percent return of options contracts using the Black-Scholes Model.
+The purpose of this project is to provide a generic framework to execute trades and pull data using Robinhood. This project provides traders with the ability to quickly access and visualize stock and option data, view current user holdings, and estimate the percent return of options contracts using the Black-Scholes Model. This project provides a scaffold to write and utilize trading algorithms through Robinhood. In the future, I plan to expand this project to provide more features for algorithmic trading.
 
 ## Design
 
