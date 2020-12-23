@@ -1,4 +1,4 @@
-# RobinhoodTrading
+# Robinhood Trading Interface
 
 | Software  | Package Requirements |
 | ------------- | ------------- |
