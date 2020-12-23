@@ -264,7 +264,10 @@ class StockHolding(Stock):
         self.share_quantity = share_quantity
         self.avg_cost = avg_cost
         self.equity = int(self.get_share_price()) * self.share_quantity
-        self.percent_change = (self.get_share_price() - self.avg_cost) / self.avg_cost * 100
+        try:
+            self.percent_change = (self.get_share_price() - self.avg_cost) / self.avg_cost * 100
+        except ZeroDivisionError:
+            self.percent_change = 0;
 
     @classmethod
     def from_my_holdings(cls, ticker):
@@ -346,20 +349,20 @@ class Option(Stock):
         self.expiration = reformat(r.options.get_option_instrument_data_by_id(self.id, info='expiration_date'),
                                    option=True)
         self.type = r.options.get_option_instrument_data_by_id(self.id)['type']
-        self.option_price = float(r.options.get_option_market_data_by_id(self.id, info='adjusted_mark_price'))
-        self.bid = float(r.options.get_option_market_data_by_id(self.id, info='bid_price'))
-        self.ask = float(r.options.get_option_market_data_by_id(self.id, 'ask_price'))
-        self.break_even = float(r.options.get_option_market_data_by_id(self.id, 'break_even_price'))
-        self.open_interest = float(r.options.get_option_market_data_by_id(self.id, info='open_interest'))
-        self.option_volume = float(r.options.get_option_market_data_by_id(self.id, info='volume'))
-        self.long_prob = float(r.options.get_option_market_data_by_id(self.id, info='chance_of_profit_long'))
-        self.short_prob = float(r.options.get_option_market_data_by_id(self.id, info='chance_of_profit_short'))
-        self.delta = float(r.options.get_option_market_data_by_id(self.id, info='delta'))
-        self.gamma = float(r.options.get_option_market_data_by_id(self.id, 'gamma'))
-        self.iv = float(r.options.get_option_market_data_by_id(self.id, 'implied_volatility'))
-        self.rho = float(r.options.get_option_market_data_by_id(self.id, info='rho'))
-        self.theta = float(r.options.get_option_market_data_by_id(self.id, info='theta'))
-        self.vega = float(r.options.get_option_market_data_by_id(self.id, info='vega'))
+        self.option_price = float(r.options.get_option_market_data_by_id(self.id, info='adjusted_mark_price')[0])
+        self.bid = float(r.options.get_option_market_data_by_id(self.id, info='bid_price')[0])
+        self.ask = float(r.options.get_option_market_data_by_id(self.id, 'ask_price')[0])
+        self.break_even = float(r.options.get_option_market_data_by_id(self.id, 'break_even_price')[0])
+        self.open_interest = float(r.options.get_option_market_data_by_id(self.id, info='open_interest')[0])
+        self.option_volume = float(r.options.get_option_market_data_by_id(self.id, info='volume')[0])
+        self.long_prob = float(r.options.get_option_market_data_by_id(self.id, info='chance_of_profit_long')[0])
+        self.short_prob = float(r.options.get_option_market_data_by_id(self.id, info='chance_of_profit_short')[0])
+        self.delta = float(r.options.get_option_market_data_by_id(self.id, info='delta')[0])
+        self.gamma = float(r.options.get_option_market_data_by_id(self.id, 'gamma')[0])
+        self.iv = float(r.options.get_option_market_data_by_id(self.id, 'implied_volatility')[0])
+        self.rho = float(r.options.get_option_market_data_by_id(self.id, info='rho')[0])
+        self.theta = float(r.options.get_option_market_data_by_id(self.id, info='theta')[0])
+        self.vega = float(r.options.get_option_market_data_by_id(self.id, info='vega')[0])
 
     @classmethod
     def from_search_by_strike_and_date(cls, ticker, exp_date, strike, type):
@@ -629,7 +632,7 @@ class OptionHolding(Option):
     @classmethod
     def from_search_by_strike_and_date(cls, ticker, exp_date, strike, type, quantity, avg_price, strategy):
         id = r.options.find_options_by_expiration_and_strike(ticker, exp_date, strike, optionType=type,
-                                                             info='id')[0]
+                                                             info='id')
         return cls(id, quantity, avg_price, strategy)
 
     def get_quantity(self):
