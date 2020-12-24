@@ -5,7 +5,7 @@
 | Python  | robin_stocks, MatPlotLib, NumPy, Pandas, SciPy|
 
 ## Summary
-The purpose of this project is to provide a generic framework to execute trades and pull data using Robinhood. This project provides traders with the ability to quickly access and visualize stock and option data, view current user holdings, and estimate the percent return of options contracts using the Black-Scholes Model. This project provides a scaffold to write and utilize trading algorithms through Robinhood. In the future, I plan to expand this project to provide more features for algorithmic trading.
+The purpose of this project is to provide a generic framework to design and execute algorithmic trading strategies using Robinhood. This project provides traders with the ability to quickly access and visualize stock and option data, view current user holdings, and estimate the percent return of options contracts using the Black-Scholes Model. This project provides a scaffold to write and utilize trading algorithms through Robinhood. In the future, I plan to expand this project to provide more features for algorithmic trading.
 
 ## Design
 
@@ -39,3 +39,7 @@ The OptionPortfolio class is used to represent a user's option portfolio. The co
 ### Portfolio
 The Portfolio class is used to represent a user's entire portfolio of stock and option positions. The class includes methods to access the user's individual stock and option portfolios as well as display a pie chart of the user's entire portfolio.
     
+## Portfolio Optimization
+The portfolio_optimization file is an example of a use case for the Robinhood-Trading Interface. This simple buy-and-hold trading algorithm uses an inital amount of equity, a list of tickers, a start date, and an end date to calculate the Sharpe Ratio optimizing allocations for each stock in the portfolio. The program then uses the Robinhood Trading Interface to automatically purchase fractional shares of each stock according to these allocations.
+
+
