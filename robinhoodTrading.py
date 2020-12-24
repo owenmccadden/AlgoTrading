@@ -353,16 +353,40 @@ class Option(Stock):
         self.bid = float(r.options.get_option_market_data_by_id(self.id, info='bid_price')[0])
         self.ask = float(r.options.get_option_market_data_by_id(self.id, 'ask_price')[0])
         self.break_even = float(r.options.get_option_market_data_by_id(self.id, 'break_even_price')[0])
-        self.open_interest = float(r.options.get_option_market_data_by_id(self.id, info='open_interest')[0])
-        self.option_volume = float(r.options.get_option_market_data_by_id(self.id, info='volume')[0])
-        self.long_prob = float(r.options.get_option_market_data_by_id(self.id, info='chance_of_profit_long')[0])
-        self.short_prob = float(r.options.get_option_market_data_by_id(self.id, info='chance_of_profit_short')[0])
-        self.delta = float(r.options.get_option_market_data_by_id(self.id, info='delta')[0])
-        self.gamma = float(r.options.get_option_market_data_by_id(self.id, 'gamma')[0])
-        self.iv = float(r.options.get_option_market_data_by_id(self.id, 'implied_volatility')[0])
-        self.rho = float(r.options.get_option_market_data_by_id(self.id, info='rho')[0])
-        self.theta = float(r.options.get_option_market_data_by_id(self.id, info='theta')[0])
-        self.vega = float(r.options.get_option_market_data_by_id(self.id, info='vega')[0])
+        self.open_interest = float(r.options.get_option_market_data_by_id(self.id, info='open_interest'))
+        self.option_volume = float(r.options.get_option_market_data_by_id(self.id, info='volume'))
+        try:
+            self.long_prob = float(r.options.get_option_market_data_by_id(self.id, info='chance_of_profit_long')[0])
+        except:
+            self.long_prob = '-'
+        try:
+            self.short_prob = float(r.options.get_option_market_data_by_id(self.id, info='chance_of_profit_short')[0])
+        except:
+            self.short_prob = '-'
+        try:
+            self.delta = float(r.options.get_option_market_data_by_id(self.id, info='delta')[0])
+        except:
+            self.delta = '-'
+        try:
+            self.gamma = float(r.options.get_option_market_data_by_id(self.id, 'gamma')[0])
+        except:
+            self.gamma = '-'
+        try:
+            self.iv = float(r.options.get_option_market_data_by_id(self.id, 'implied_volatility')[0])
+        except:
+            self.iv = '-'
+        try:
+            self.rho = float(r.options.get_option_market_data_by_id(self.id, info='rho')[0])
+        except:
+            self.rho = '-'
+        try:
+            self.theta = float(r.options.get_option_market_data_by_id(self.id, info='theta')[0])
+        except:
+            self.theta = '-'
+        try:
+            self.vega = float(r.options.get_option_market_data_by_id(self.id, info='vega')[0])
+        except:
+            self.vega = '-'
 
     @classmethod
     def from_search_by_strike_and_date(cls, ticker, exp_date, strike, type):
