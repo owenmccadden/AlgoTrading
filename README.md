@@ -1,4 +1,4 @@
-# Robinhood Trading Interface
+# Algo Trading
 
 | Software  | Package Requirements |
 | ------------- | ------------- |
